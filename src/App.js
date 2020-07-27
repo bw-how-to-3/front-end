@@ -1,50 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import PrivateRoute from './components/PrivateRoute'
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
 // COMPONENTS
-import Login from './components/Login'
-import Register from './components/Register'
-import AddSkill from './components/AddSkill'
-import SkillsList from './components/SkillsList'
+import LandingPage from "./components/LandingPage";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import HowToCard from "./components/HowToCard";
+import SkillsList from "./components/SkillsList";
+import NavigationBar from "./components/NavigationBar";
 
-import axiosWithAuth from './utils/axiosWithAuth'
+import axiosWithAuth from "./utils/axiosWithAuth";
 
-import './App.css';
-import { HowToContext } from './contexts/HowToContext';
+import "./App.css";
+import { HowToContext } from "./contexts/HowToContext";
+import HowToForm from "./components/HowToForm";
+
+const initialState = {
+  title: "",
+};
 
 function App() {
-  const [skills, setSkills] = useState([])
+  const [skills, setSkills] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
-    .get('')
-    .then(res => {
-      console.log(res)
-      setSkills()
-    })
-    
-  }, [])
+      .get("")
+      .then((res) => {
+        console.log(res);
+        setSkills();
+      });
+  }, []);
 
-  const addSkill = newSkill => {
+  const addSkill = (newSkill) => {
     axiosWithAuth()
-    .post('', newSkill)
-    .then(res => {
-      console.log(res)
-      setSkills([...skills, newSkill])
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
+      .post("", newSkill)
+      .then((res) => {
+        console.log(res);
+        setSkills([...skills, newSkill]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
-    <HowToContext.Provider value={{ addSkill, skill }}>
+    <HowToContext.Provider value={{ addSkill, skills }}>
       <Router>
-      <div className="App">
-        <Route exact path='/' component={Login} />
-        <Route exact path='/Register' component={Register} />
-        <PrivateRoute path='/SkillsList' component={SkillsList} />
-        <PrivateRoute path='/AddHowTo' component={AddSkill} />
-      </div>
+        <div className="App">
+          <NavigationBar />
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/skills-list" component={SkillsList} />
+          <PrivateRoute path="/add-skill" component={HowToForm} />
+        </div>
       </Router>
     </HowToContext.Provider>
   );

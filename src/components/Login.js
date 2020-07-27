@@ -1,59 +1,61 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import axios from "axios";
+import axiosWithAuth from "../utils/axiosWithAuth";
 
-const Login = props => {
-    const [account, setAccount] = useState({
-        username: '',
-        password: '',
-    })
+import { Link } from "react-router-dom";
 
-    const handleChanges = e => {
-        setAccount({
-        ...account,
-        [e.target.name]: e.target.value
-        })
-    }
-    const submitForm = e => {
-        e.preventDefault();
-        axiosWithAuth()
-        .post()
-        .then(res => {
+const Login = (props) => {
+  const [account, setAccount] = useState({
+    username: "",
+    password: "",
+  });
 
-        })
-        .catch(error => {
-            console.log('there was an error fetching a token, yikes', error)
-        })
-    }
+  const handleChanges = (e) => {
+    setAccount({
+      ...account,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const submitForm = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error("there was an error fetching a token, yikes", error);
+      });
+  };
 
-    return(
-        <div className='login'>
-            <form className='form'>
-            <h4>Welcome back!</h4>
-            <h4>Please Log into your account</h4>
-                <input
-                type='text'
-                name='username'
-                placeholder='username'
-                onChange={handleChanges}
-                value={account.username}
-                /><br />
-                <input
-                type='password'
-                name='password'
-                placeholder='password'
-                onChange={handleChanges}
-                value={account.password}
-                />
-            <button>Log in</button>
+  return (
+    <div className="login">
+      <form className="form">
+        <h4>Welcome back!</h4>
+        <h4>Please Log into your account</h4>
+        <input
+          type="text"
+          name="username"
+          placeholder="username"
+          onChange={handleChanges}
+          value={account.username}
+        />
+        <br />
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          onChange={handleChanges}
+          value={account.password}
+        />
+        <button>Log in</button>
 
-            <h4>Not registered yet?  Register Now!</h4>
+        <h4>Not registered yet? Register Now!</h4>
 
-            <Link to='/Register'>Register Here</Link>
-            </form>
-        </div>
-    )
-}
+        <Link to="/Register">Register Here</Link>
+      </form>
+    </div>
+  );
+};
 
-
-export default Login
+export default Login;
