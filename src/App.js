@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import PrivateRoute from './components/PrivateRoute'
+
 // COMPONENTS
 import Login from './components/Login'
 import Register from './components/Register'
-import AddSkill from './components/AddSkill'
+import HowToCard from './components/HowToCard'
 import SkillsList from './components/SkillsList'
+import NavigationBar from './components/NavigationBar'
+import LandingPage from './components/LandingPage'
+import PrivateRoute from './components/PrivateRoute'
+import HowToForm from './components/HowToForm'
 
 import axiosWithAuth from './utils/axiosWithAuth'
+import { HowToContext } from './contexts/HowToContext';
 
 import './App.css';
-import { HowToContext } from './contexts/HowToContext';
+
 
 function App() {
   const [skills, setSkills] = useState([])
@@ -36,14 +41,17 @@ function App() {
       console.log(error)
     })
   }
+
   return (
-    <HowToContext.Provider value={{ addSkill, skill }}>
+    <HowToContext.Provider value={{ addSkill, skills }}>
       <Router>
       <div className="App">
-        <Route exact path='/' component={Login} />
-        <Route exact path='/Register' component={Register} />
-        <PrivateRoute path='/SkillsList' component={SkillsList} />
-        <PrivateRoute path='/AddHowTo' component={AddSkill} />
+        <NavigationBar />
+        <Route exact path='/' component={LandingPage} />
+        <Route exact path='/register' component={Register} />
+        <Route exact path='/login' component={Login} />
+        <PrivateRoute path='/skills-list' component={SkillsList} />
+        <PrivateRoute path='/add-skill' component={HowToForm} />
       </div>
       </Router>
     </HowToContext.Provider>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import axiosWithAuth from '../utils/axiosWithAuth'
 import { Link } from 'react-router-dom'
 
 const Login = props => {
@@ -17,9 +17,11 @@ const Login = props => {
     const submitForm = e => {
         e.preventDefault();
         axiosWithAuth()
-        .post()
+        .post('', )
         .then(res => {
-
+            console.log(res)
+            window.localStorage.setItem('token', res.data.payload)
+            props.history.push('/skills-list')
         })
         .catch(error => {
             console.log('there was an error fetching a token, yikes', error)

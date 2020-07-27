@@ -1,4 +1,4 @@
-import axios from axios;
+import axios from 'axios';
 
 const axiosWithAuth = () => {
     return axios.create({
@@ -8,3 +8,5 @@ const axiosWithAuth = () => {
         
     })
 }
+
+export default axiosWithAuth

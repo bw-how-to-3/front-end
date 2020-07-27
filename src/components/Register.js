@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import axiosWithAuth from '../utils/axiosWithAuth'
 import { Link } from 'react-router-dom'
 
 const Register = props => {
@@ -24,7 +24,7 @@ const Register = props => {
         .then(res => {
             console.log(res)
             window.localStorage.setItem('token', res.data.payload)
-            props.history.push('/')
+            props.history.push('/login')
         })
         .catch(error => {
             console.log(error)
@@ -62,7 +62,7 @@ const Register = props => {
             <button>Next</button>
 
             <h4>Already have an account? Login Here!</h4>
-            <Link to='/'>Log in</Link>
+            <Link to='/login'>Log in</Link>
             </form>
         </div>
     )

@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { axiosWithAuth } from '../utils/axiosWithAuth'
+import axiosWithAuth from '../utils/axiosWithAuth'
 import { HowToContext } from '../contexts/HowToContext'
 import { Route, useHistory } from 'react-router-dom'
 
 
-const HowTo = (props) => {
+const HowToCard = (props) => {
     const { push } = useHistory()
 
     const deleteSkill = () => {
@@ -18,11 +18,12 @@ const HowTo = (props) => {
 
     return (
         <div>
-            
-            <h4></h4>
-            <h4></h4>
-            <h4></h4>
-            <h4></h4>
+
+            <h4>title</h4>
+            <h5>description</h5>
+            <p>instructions</p>
+            <button>edit</button>
+            <button>delete</button>
 
         </div>
     )
@@ -31,4 +32,4 @@ const HowTo = (props) => {
 
 
 
-export default HowTo
+export default HowToCard
