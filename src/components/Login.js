@@ -22,7 +22,7 @@ const Login = props => {
 
         })
         .catch(error => {
-            console.log('there was an error fetching a token', error)
+            console.log('there was an error fetching a token, yikes', error)
         })
     }
 
