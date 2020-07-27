@@ -1,25 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import PrivateRoute from './components/PrivateRoute'
+// COMPONENTS
+import Login from './components/Login'
+import Register from './components/Register'
+import AddSkill from './components/AddSkill'
+import SkillsList from './components/SkillsList'
+
+import axiosWithAuth from './utils/axiosWithAuth'
+
 import './App.css';
+import { HowToContext } from './contexts/HowToContext';
 
 function App() {
+  const [skills, setSkills] = useState([])
+
+  useEffect(() => {
+    axiosWithAuth()
+    .get('')
+    .then(res => {
+      console.log(res)
+      setSkills()
+    })
+    
+  }, [])
+
+  const addSkill = newSkill => {
+    axiosWithAuth()
+    .post('', newSkill)
+    .then(res => {
+      console.log(res)
+      setSkills([...skills, newSkill])
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HowToContext.Provider value={{ addSkill, skill }}>
+      <Router>
+      <div className="App">
+        <Route exact path='/' component={Login} />
+        <Route exact path='/Register' component={Register} />
+        <PrivateRoute path='/HowToList' component={SkillsList} />
+        <PrivateRoute path='/AddHowTo' component={AddSkill} />
+      </div>
+      </Router>
+    </HowToContext.Provider>
   );
 }
 
