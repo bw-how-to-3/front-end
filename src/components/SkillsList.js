@@ -1,50 +1,48 @@
-<<<<<<< HEAD
 import React, { useContext, useEffect, useState } from "react";
 import { HowToContext } from "../contexts/HowToContext";
-import { Link } from "react-router-dom";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { Link, useHistory } from "react-router-dom";
+import axiosWithAuth from "../utils/axiosWithAuth";
 import HowToCard from "./HowToCard";
-=======
-import React, { useContext, useEffect, useState } from 'react'
-import { HowToContext } from '../contexts/HowToContext'
-import { Link } from 'react-router-dom'
-import { axiosWithAuth } from '../utils/axiosWithAuth'
-import HowToCard from './HowToCard'
->>>>>>> 68aee4f4746640b1fcaadfb43904b98e561375d0
+import styled from "styled-components";
+
+const ButtonStyle = styled.button`
+  /* display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.2s; */
+`;
 
 const SkillsList = () => {
   const { skills } = useContext(HowToContext);
+  const { push } = useHistory();
 
-<<<<<<< HEAD
+  const deleteSkill = () => {
+    axiosWithAuth()
+      .delete(``)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="skillslist">
       {skills.map((skill) => (
         <HowToCard skill={skill} key={skill.id} />
       ))}
-      <Link to="/add-skill">Add a new skill!</Link>
+      <Link to="/how-to-form">Add a new skill!</Link>
+      <ButtonStyle onClick={() => push("/update-how-to")}>edit</ButtonStyle>
+      <ButtonStyle onChange={deleteSkill}>delete</ButtonStyle>
     </div>
   );
 };
 
 export default SkillsList;
-=======
-const SkillsList = () => {
-    const { skills } = useContext(HowToContext)
-
-    return (
-        <div className='skillslist'>
-            {skills.map((skill) => (
-                <div>
-                    <HowToCard
-                    skill={skill}
-                    key={skill.id}
-                    />
-                </div>
-            ))}
-            <Link to='/add-skill'>Add a new skill!</Link>
-        </div>
-    )
-}
-
-export default SkillsList
->>>>>>> 68aee4f4746640b1fcaadfb43904b98e561375d0
