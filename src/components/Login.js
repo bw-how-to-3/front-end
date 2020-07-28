@@ -30,31 +30,39 @@ const Login = props => {
     }
 
     return(
-        <div className='login'>
-            <form className='form' onSubmit={submitForm}>
+        <div className='uk-section uk-section-small'>
+        <div className="uk-container uk-flex uk-flex-center">
+            <form className='form' onSubmit={submitForm} className='uk-card uk-card-secondary uk-card-body'>
             <h4>Welcome back!</h4>
             <h4>Please Log into your account</h4>
-                <input
-                type='text'
-                name='username'
-                placeholder='username'
-                onChange={handleChanges}
-                value={account.username}
-                /><br />
-                <input
-                type='password'
-                name='password'
-                placeholder='password'
-                onChange={handleChanges}
-                value={account.password}
-                /><br/>
-            <button>Log in</button>
+                <div className='uk-margin'>
+                    <input
+                    className='uk-input'
+                    type='text'
+                    name='username'
+                    placeholder='username'
+                    onChange={handleChanges}
+                    value={account.username}
+                    />
+                </div>
+                <div className='uk-margin'>
+                    <input
+                    className='uk-input'
+                    type='password'
+                    name='password'
+                    placeholder='password'
+                    onChange={handleChanges}
+                    value={account.password}
+                    />
+                </div>
+            <div className='uk-margin'>
+                <button className='uk-button uk-button-default uk-width-1-1'>Log in</button>
+            </div>
+            <h4>Not registered yet?  <Link to='/Register'>Register Here</Link></h4>
 
-            <h4>Not registered yet?  Register Now!</h4>
-
-            <Link to='/Register'>Register Here</Link>
             </form>
         </div>
+    </div>
     )
 }
 
