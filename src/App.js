@@ -10,6 +10,7 @@ import NavigationBar from './components/NavigationBar'
 import LandingPage from './components/LandingPage'
 import PrivateRoute from './components/PrivateRoute'
 import HowToForm from './components/HowToForm'
+import UpdateForm from './components/UpdateForm'
 
 import axiosWithAuth from './utils/axiosWithAuth'
 import { HowToContext } from './contexts/HowToContext';
@@ -22,17 +23,17 @@ function App() {
 
   useEffect(() => {
     axiosWithAuth()
-    .get('')
+    .get('/how-to')
     .then(res => {
       console.log(res)
-      setSkills()
+      setSkills(res.data)
     })
     
   }, [])
 
   const addSkill = newSkill => {
     axiosWithAuth()
-    .post('', newSkill)
+    .post('/skills-list', newSkill)
     .then(res => {
       console.log(res)
       setSkills([...skills, newSkill])
@@ -43,15 +44,16 @@ function App() {
   }
 
   return (
-    <HowToContext.Provider value={{ addSkill, skills }}>
+    <HowToContext.Provider value={{ addSkill, skills, setSkills }}>
       <Router>
       <div className="App">
         <NavigationBar />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
+        <PrivateRoute path='/update-form' component={UpdateForm} />
         <PrivateRoute path='/skills-list' component={SkillsList} />
-        <PrivateRoute path='/add-skill' component={HowToForm} />
+        <PrivateRoute path='/how-to-form' component={HowToForm} />
       </div>
       </Router>
     </HowToContext.Provider>

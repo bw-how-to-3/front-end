@@ -17,7 +17,7 @@ const Login = props => {
     const submitForm = e => {
         e.preventDefault();
         axiosWithAuth()
-        .post('', )
+        .post('/login', account)
         .then(res => {
             console.log(res)
             window.localStorage.setItem('token', res.data.payload)
@@ -25,12 +25,13 @@ const Login = props => {
         })
         .catch(error => {
             console.log('there was an error fetching a token, yikes', error)
+            props.history.push('/')
         })
     }
 
     return(
         <div className='login'>
-            <form className='form'>
+            <form className='form' onSubmit={submitForm}>
             <h4>Welcome back!</h4>
             <h4>Please Log into your account</h4>
                 <input
@@ -46,7 +47,7 @@ const Login = props => {
                 placeholder='password'
                 onChange={handleChanges}
                 value={account.password}
-                />
+                /><br/>
             <button>Log in</button>
 
             <h4>Not registered yet?  Register Now!</h4>

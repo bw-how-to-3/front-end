@@ -1,20 +1,21 @@
 import React, { useContext, useState, useEffect } from 'react'
+import axiosWithAuth from '../utils/axiosWithAuth'
 import { HowToContext } from '../contexts/HowToContext'
-import { useHistory } from 'react-router-dom'
-
-const initialState = {
-    title: '',
-    description: '',
-    instructions: '',
-}
-
+import { Route, useHistory, useParams } from 'react-router-dom'
 
 
 const HowToForm = () => {
 
-    const [newSkill, setNewSkill] = useState(initialState)
     const { addSkill } = useContext(HowToContext)
     const { push } = useHistory()
+    const { id } = useParams()
+
+    const [newSkill, setNewSkill] = useState({
+        id: id,
+        title: '',
+        body: '',
+    })
+    
 
     const handleChanges = (e) => {
         e.persist()
@@ -42,20 +43,12 @@ const HowToForm = () => {
                 onChange={handleChanges}
                 value={newSkill.title}
                 /><br/>
-                <input
-                type='textarea'
-                name='description'
-                placeholder='description'
-                onChange={handleChanges}
-                value={newSkill.description}
-                /><br/>
-                <input
-                type='textarea'
-                name='instructions'
-                placeholder='instructions'
-                onChange={handleChanges}
-                value={newSkill.instructions}
-                /><br/>
+                <textarea 
+                name='body'
+                value={newSkill.body} 
+                placeholder='description' 
+                onChange={handleChanges}/> 
+                <br/>
                 <button>Add Skill</button>
             </form>
         </div>

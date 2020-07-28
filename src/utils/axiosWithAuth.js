@@ -5,6 +5,7 @@ const axiosWithAuth = () => {
         headers: {
             Authorization: window.localStorage.getItem('token')
         },
+        baseURL: 'https://heftyb-how-to.herokuapp.com/'
         
     })
 }
