@@ -1,40 +1,44 @@
-import React, { useState, useEffect } from 'react'
-import axiosWithAuth from '../utils/axiosWithAuth'
-import { Link } from 'react-router-dom'
 
-const Register = props => {
-    const [register, setRegister] = useState({
-        username: '',
-        password: '',
-    })
+import React, { useState, useEffect } from "react";
+import axiosWithAuth from "../utils/axiosWithAuth";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-    const handleChanges = e => {
-        e.persist()
-        setRegister({
-            ...register,
-            [e.target.name]: e.target.value
-        })
-    }
 
-    const sumbitForm = e => {
-        e.preventDefault()
-        axiosWithAuth()
-        .post('', register)
-        .then(res => {
-            console.log(res)
-            window.localStorage.setItem('token', res.data.payload)
-            props.history.push('/login')
-        })
-        .catch(error => {
-            console.log(error)
-            props.history.push('/')
-        })
-    }   
+const Register = (props) => {
+  const [register, setRegister] = useState({
+    username: "",
+    password: "",
+  });
+  const handleChanges = (e) => {
+    setRegister({
+      ...register,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const newUser = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://heftyb-how-to.herokuapp.com/createnewuser", register, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.access_token);
+        props.history.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+        props.history.push("/");
+      });
+  };
 
     return (
         <div className='uk-section uk-section-small'>
         <div className="uk-container uk-flex uk-flex-center">
-            <form onSubmit={sumbitForm} className='uk-card uk-card-secondary uk-card-body'>
+            <form onSubmit={newUser} className='uk-card uk-card-secondary uk-card-body'>
             <h4>Lets get started!</h4>
             <h4>Create your account!</h4>
             <div className='uk-margin'>

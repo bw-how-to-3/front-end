@@ -15,14 +15,14 @@ const [skill, setSkill] = useState ({
 
 useEffect(() => {
     axiosWithAuth()
-    .get(``)
+    .get(`/posts/posts/{postid}`, skill)
     .then(res => {
         setSkill(res.data)
     })
     .catch(error => {
         console.log(error)
     })
-}, [])
+}, [id])
 
 const handleChanges = (e) => {
     e.persist();
@@ -36,7 +36,7 @@ const handleChanges = (e) => {
 const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-    .put(``, skill)
+    .put(`/posts/post/{postid}`, skill)
     .then(res => {
         setSkills(res.data)
         push(`/skills-list/${id}`)

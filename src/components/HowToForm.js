@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react'
-import axiosWithAuth from '../utils/axiosWithAuth'
 import { HowToContext } from '../contexts/HowToContext'
 import { Route, useHistory, useParams } from 'react-router-dom'
 

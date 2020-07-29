@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import axios from 'axios'
 
 // COMPONENTS
 import Login from './components/Login'
@@ -23,7 +24,7 @@ function App() {
 
   useEffect(() => {
     axiosWithAuth()
-    .get('/how-to')
+    .get('/posts/posts')
     .then(res => {
       console.log(res)
       setSkills(res.data)
@@ -31,12 +32,12 @@ function App() {
     
   }, [])
 
-  const addSkill = newSkill => {
+  const addSkill = newPost => {
     axiosWithAuth()
-    .post('/skills-list', newSkill)
+    .post('/posts/post', newPost)
     .then(res => {
       console.log(res)
-      setSkills([...skills, newSkill])
+      setSkills([...skills, newPost])
     })
     .catch(error => {
       console.log(error)
