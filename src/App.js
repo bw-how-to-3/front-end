@@ -9,31 +9,30 @@ import Register from "./components/Register";
 import SkillsList from "./components/SkillsList";
 import NavigationBar from "./components/NavigationBar";
 
-import axiosWithAuth from "./utils/axiosWithAuth";
-
 import "./App.css";
 import { HowToContext } from "./contexts/HowToContext";
 import HowToForm from "./components/HowToForm";
 import UpdateForm from "./components/UpdateForm";
+import axiosWithAuth from "./utils/axiosWithAuth";
 
 function App() {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
-      .get("")
+      .get("/posts/posts")
       .then((res) => {
         console.log(res);
-        setSkills();
+        setSkills(res.data);
       });
   }, []);
 
-  const addSkill = (newSkill) => {
+  const addSkill = (newPost) => {
     axiosWithAuth()
-      .post("/skills-list", newSkill)
+      .post("/posts/post", newPost)
       .then((res) => {
         console.log(res);
-        setSkills([...skills, newSkill]);
+        setSkills([...skills, newPost]);
       })
       .catch((error) => {
         console.log(error);

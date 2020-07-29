@@ -20,17 +20,11 @@ const Register = (props) => {
   const newUser = (e) => {
     e.preventDefault();
     axios
-      .post(
-        "https://heftyb-how-to.herokuapp.com/createnewuser",
-        `grant_type=password&username=${register.username}&password=${register.password}`,
-        {
-          headers: {
-            // btoa is converting our client id/client secret into base64
-            Authorization: `Basic ${btoa("lambda-client:secure")}`,
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      )
+      .post("https://heftyb-how-to.herokuapp.com/createnewuser", register, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.access_token);

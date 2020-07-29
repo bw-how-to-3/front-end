@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
-    username: "admin",
-    password: "password",
+    username: "",
+    password: "",
   });
 
   const handleChange = (e) =>

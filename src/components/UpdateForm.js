@@ -6,7 +6,7 @@ import { HowToContext } from "../contexts/HowToContext";
 const UpdateForm = () => {
   const { id } = useParams();
   const { push } = useHistory();
-  const { setSkills } = useContext(HowToContext);
+  const { setSkills, skills } = useContext(HowToContext);
 
   const [skill, setSkill] = useState({
     title: "",
@@ -20,9 +20,10 @@ const UpdateForm = () => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get("")
+      .get(`/posts/posts`)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        res.filter((posts) => posts === res.data);
       })
       .catch((err) => {
         console.log(err);

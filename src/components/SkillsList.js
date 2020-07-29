@@ -29,9 +29,9 @@ const SkillsList = () => {
 
   return (
     <ListContainer>
-      {/* {skills.map((skill) => (
+      {skills.map((skill) => (
         <HowToCard skill={skill} key={skill.id} />
-      ))} */}
+      ))}
       <Link to="/how-to-form">
         <ButtonStyle>Add a new skill!</ButtonStyle>
       </Link>
