@@ -1,3 +1,30 @@
+<<<<<<< HEAD
+.App {
+  text-align: center;
+}
+
+.landing{
+  height: 100vh;
+  background-image: url('./images/landing.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    color: white
+}
+
+.navigation{
+  background-color: #3685B5;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px
+}
+
+.signup{
+  margin: 5px;
+  padding: 5px;
+}
+=======
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+>>>>>>> cb89c6b90358d024a90def17f02664c1ffab5c9c

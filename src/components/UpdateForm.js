@@ -1,74 +1,78 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import axiosWithAuth from "../utils/axiosWithAuth";
-import { HowToContext } from "../contexts/HowToContext";
+import React, { useContext, useState, useEffect } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
+import axiosWithAuth from '../utils/axiosWithAuth'
+import { HowToContext } from '../contexts/HowToContext'
 
-const UpdateForm = () => {
-  const { id } = useParams();
-  const { push } = useHistory();
-  const { setSkills, skills } = useContext(HowToContext);
 
-  const [skill, setSkill] = useState({
-    title: "",
-    description: "",
-  });
+const UpdateForm = (props) => {
+const { setSkills } = useContext(HowToContext)
+const { id } = useParams()
+const { push } = useHistory()
+const [skill, setSkill] = useState ({
+    title: '',
+    body:'',
+})
 
-  const handleChanges = (e) => {
-    e.preventDefault();
-    setSkill({ ...skill, [e.target.name]: e.target.value });
-  };
-
-  useEffect(() => {
+useEffect(() => {
     axiosWithAuth()
-      .get(`/posts/posts`)
-      .then((res) => {
-        console.log(res.data);
-        res.filter((posts) => posts === res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+    .get(`/posts/posts/{postid}`, skill)
+    .then(res => {
+        setSkill(res.data)
+    })
+    .catch(error => {
+        console.log(error)
+    })
+}, [id])
 
-  const handleSubmit = (e) => {
+const handleChanges = (e) => {
+    e.persist();
+    setSkill({
+        ...skill,
+        [e.target.name]: e.target.value
+    })
+}
+
+
+const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .put("", skill)
-      .then((res) => {
-        setSkills(res.data);
-      });
-  };
+    .put(`/posts/post/{postid}`, skill)
+    .then(res => {
+        setSkills(res.data)
+        push(`/skills-list/${id}`)
+    })
+    .catch(error => {
+        console.log(error)
+    })
+    
+    
+}
 
-  return (
-    <div>
-      <h2>Update your How-To</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          onChange={handleChanges}
-          value={skill.title}
-          placeholder="Title"
-        />
-        <br></br>
-        <textarea
-          type="text"
-          name="title"
-          onChange={handleChanges}
-          value={skill.body}
-          placeholder="Your description..."
-        />
 
-        <button
-          onClick={() => {
-            axiosWithAuth().put(`/skills-list/${id}`);
-          }}
-        >
-          {""}
-        </button>
-      </form>
-    </div>
-  );
-};
+    return (
+        <div>
+            <h2>Update your How-To</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                type='text'
+                name='title'
+                onChange={handleChanges}
+                value={skill.title}
+                placeholder='update title'
+                /><br/>
+                <textarea
+                name='body'
+                value={skill.body}
+                onChange={handleChanges}
+                placeholder='update description'
+                /><br />
+                <button>Update</button>
+            </form>
+    
+        </div>
+    )
 
-export default UpdateForm;
+
+}
+
+export default UpdateForm

@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import axios from 'axios'
+
 // COMPONENTS
-import LandingPage from "./components/LandingPage";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Login from './components/Login'
+import Register from './components/Register'
+import HowToCard from './components/HowToCard'
+import SkillsList from './components/SkillsList'
+import NavigationBar from './components/NavigationBar'
+import LandingPage from './components/LandingPage'
+import PrivateRoute from './components/PrivateRoute'
+import HowToForm from './components/HowToForm'
+import UpdateForm from './components/UpdateForm'
+
+import axiosWithAuth from './utils/axiosWithAuth'
+import { HowToContext } from './contexts/HowToContext';
 
 import SkillsList from "./components/SkillsList";
 import NavigationBar from "./components/NavigationBar";

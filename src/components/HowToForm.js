@@ -79,4 +79,28 @@ const HowToForm = () => {
   );
 };
 
-export default HowToForm;
+
+//     return(
+//         <div>
+//             <form onSubmit={handleSubmit}>
+//                 <input
+//                 type='text'
+//                 name='title'
+//                 placeholder='title'
+//                 onChange={handleChanges}
+//                 value={newSkill.title}
+//                 /><br/>
+//                 <textarea 
+//                 name='body'
+//                 value={newSkill.body} 
+//                 placeholder='description' 
+//                 onChange={handleChanges}/> 
+//                 <br/>
+//                 <button>Add Skill</button>
+//             </form>
+//         </div>
+//     )
+// }
+
+
+export default HowToForm
