@@ -5,43 +5,37 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import HowToCard from "./HowToCard";
 import styled from "styled-components";
 
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const ButtonStyle = styled.button`
-  /* display: inline-block;
-  padding: 0.35em 1.2em;
-  border: 0.1em solid #ffffff;
-  margin: 0 0.3em 0.3em 0;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  color: #ffffff;
-  text-align: center;
-  transition: all 0.2s; */
+  border: 1px solid #383d3b;
+  padding: 3px 5px;
+  margin: 5px;
+  color: #383d3b;
+  border-radius: 2px;
+  background-color: #ff934f;
+  &:hover {
+    background-color: #383d3b;
+    color: #ff934f;
+  }
 `;
 
 const SkillsList = () => {
   const { skills } = useContext(HowToContext);
-  const { push } = useHistory();
-
-  const deleteSkill = () => {
-    axiosWithAuth()
-      .delete(``)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => console.log(error));
-  };
 
   return (
-    <div className="skillslist">
-      {skills.map((skill) => (
+    <ListContainer>
+      {/* {skills.map((skill) => (
         <HowToCard skill={skill} key={skill.id} />
-      ))}
-      <Link to="/how-to-form">Add a new skill!</Link>
-      <ButtonStyle onClick={() => push("/update-how-to")}>edit</ButtonStyle>
-      <ButtonStyle onChange={deleteSkill}>delete</ButtonStyle>
-    </div>
+      ))} */}
+      <Link to="/how-to-form">
+        <ButtonStyle>Add a new skill!</ButtonStyle>
+      </Link>
+    </ListContainer>
   );
 };
 

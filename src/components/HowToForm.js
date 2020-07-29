@@ -1,6 +1,37 @@
 import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import HowToContext from "../contexts/HowToContext";
+import styled from "styled-components";
+
+const DivContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #383d3b;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #3685b5;
+`;
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+`;
+
+const ButtonStyle = styled.button`
+  border: 1px solid #383d3b;
+  padding: 3px 5px;
+  margin: 5px;
+  color: #383d3b;
+  border-radius: 2px;
+  background-color: #ff934f;
+  &:hover {
+    background-color: #383d3b;
+    color: #ff934f;
+  }
+`;
 
 const HowToForm = () => {
   const { push } = useHistory();
@@ -24,8 +55,8 @@ const HowToForm = () => {
   };
 
   return (
-    <div>
-      <form onChange={handleSubmit}>
+    <DivContainer>
+      <FormContainer onChange={handleSubmit}>
         <input
           type="text"
           name="title"
@@ -33,15 +64,17 @@ const HowToForm = () => {
           onChange={handleChanges}
           value={newSkill.title}
         />
+        <br></br>
         <textarea
           name="body"
           onChange={handleChanges}
           value={newSkill.body}
           placeholder="Description"
         />
-        <button></button>
-      </form>
-    </div>
+        <br></br>
+        <ButtonStyle>Update</ButtonStyle>
+      </FormContainer>
+    </DivContainer>
   );
 };
 

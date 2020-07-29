@@ -1,52 +1,63 @@
 import React, { useState } from "react";
-import axiosWithAuth from "../utils/axiosWithAuth";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Login = (props) => {
-  const [account, setAccount] = useState({
-    username: "",
-    password: "",
+  const [credentials, setCredentials] = useState({
+    username: "admin",
+    password: "password",
   });
 
-  const handleChanges = (e) => {
-    setAccount({
-      ...account,
+  const handleChange = (e) =>
+    setCredentials({
+      ...credentials,
       [e.target.name]: e.target.value,
     });
-  };
-  const submitForm = (e) => {
+
+  const login = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post("/login", account)
+    axios
+      .post(
+        "https://heftyb-how-to.herokuapp.com/login",
+        `grant_type=password&username=${credentials.username}&password=${credentials.password}`,
+        {
+          headers: {
+            // btoa is converting our client id/client secret into base64
+            Authorization: `Basic ${btoa("lambda-client:secure")}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
-        window.localStorage.setItem("token", res.data.payload);
+        localStorage.setItem("token", res.data.access_token);
         props.history.push("/skills-list");
       })
-      .catch((error) => {
-        console.log("there was an error fetching a token, yikes", error);
+      .catch((err) => {
+        console.log(err);
+        props.history.push("/");
       });
   };
 
   return (
     <div className="login">
-      <form className="form">
+      <form className="form" onSubmit={login}>
         <h4>Welcome back!</h4>
         <h4>Please Log into your account</h4>
         <input
           type="text"
           name="username"
           placeholder="username"
-          onChange={handleChanges}
-          value={account.username}
+          onChange={handleChange}
+          value={credentials.username}
         />
         <br />
         <input
           type="password"
           name="password"
           placeholder="password"
-          onChange={handleChanges}
-          value={account.password}
+          onChange={handleChange}
+          value={credentials.password}
         />
         <button>Log in</button>
 

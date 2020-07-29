@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import axios from "axios";
 
 import { Link } from "react-router-dom";
 
@@ -10,31 +11,40 @@ const Register = (props) => {
   });
 
   const handleChanges = (e) => {
-    e.persist();
     setRegister({
       ...register,
       [e.target.name]: e.target.value,
     });
   };
 
-  const sumbitForm = (e) => {
+  const newUser = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post("/register", register)
+    axios
+      .post(
+        "https://heftyb-how-to.herokuapp.com/createnewuser",
+        `grant_type=password&username=${register.username}&password=${register.password}`,
+        {
+          headers: {
+            // btoa is converting our client id/client secret into base64
+            Authorization: `Basic ${btoa("lambda-client:secure")}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
-        window.localStorage.setItem("token", res.data.payload);
+        localStorage.setItem("token", res.data.access_token);
         props.history.push("/login");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
         props.history.push("/");
       });
   };
 
   return (
     <div>
-      <form onSubmit={sumbitForm}>
+      <form onSubmit={newUser}>
         <h4>Lets get started!</h4>
         <h4>Create your account!</h4>
 
