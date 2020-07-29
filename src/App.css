@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .App {
   text-align: center;
 }
@@ -22,3 +23,8 @@
   margin: 5px;
   padding: 5px;
 }
+=======
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+>>>>>>> cb89c6b90358d024a90def17f02664c1ffab5c9c
