@@ -1,6 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { HowToContext } from "../contexts/HowToContext";
 import { useHistory } from "react-router-dom";
+// import styled from "styled-components";
 
 // const DivContainer = styled.div`
 //   display: flex;
@@ -78,29 +79,6 @@ const HowToForm = () => {
     </div>
   );
 };
-
-
-//     return(
-//         <div>
-//             <form onSubmit={handleSubmit}>
-//                 <input
-//                 type='text'
-//                 name='title'
-//                 placeholder='title'
-//                 onChange={handleChanges}
-//                 value={newSkill.title}
-//                 /><br/>
-//                 <textarea 
-//                 name='body'
-//                 value={newSkill.body} 
-//                 placeholder='description' 
-//                 onChange={handleChanges}/> 
-//                 <br/>
-//                 <button>Add Skill</button>
-//             </form>
-//         </div>
-//     )
-// }
 
 
 export default HowToForm

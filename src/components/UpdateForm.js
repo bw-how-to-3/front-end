@@ -1,28 +1,34 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams, useLocation } from 'react-router-dom'
 import axiosWithAuth from '../utils/axiosWithAuth'
 import { HowToContext } from '../contexts/HowToContext'
 
 
 const UpdateForm = (props) => {
-const { setSkills } = useContext(HowToContext)
+const { skills, setSkills } = useContext(HowToContext)
 const { id } = useParams()
+const location = useLocation();
 const { push } = useHistory()
+
 const [skill, setSkill] = useState ({
     title: '',
     body:'',
 })
-
-useEffect(() => {
-    axiosWithAuth()
-    .get(`/posts/posts/{postid}`, skill)
-    .then(res => {
-        setSkill(res.data)
-    })
-    .catch(error => {
-        console.log(error)
-    })
-}, [id])
+// useEffect(() => {
+//     if(location.state) {
+//         setSkill(location.state)
+//     }else{
+//     axiosWithAuth()
+//     .get(`/posts/posts/${id}`, skill)
+//     .then(res => {
+//         setSkill(res.data)
+        
+//     })
+//     .catch(error => {
+//         console.log(error)
+//     })
+//   }  
+// }, [id])
 
 const handleChanges = (e) => {
     e.persist();
@@ -32,23 +38,19 @@ const handleChanges = (e) => {
     })
 }
 
-
 const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-    .put(`/posts/post/{postid}`, skill)
+    .put(`/posts/post/${id}`, skill)
     .then(res => {
+        console.log({res})
         setSkills(res.data)
-        push(`/skills-list/${id}`)
+        push(`/skills-list/`)
     })
     .catch(error => {
         console.log(error)
     })
-    
-    
 }
-
-
     return (
         <div>
             <h2>Update your How-To</h2>

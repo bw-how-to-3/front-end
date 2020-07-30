@@ -13,6 +13,9 @@ const axiosWithAuth = () => {
     })
 }
 
+export default axiosWithAuth;
+
+
 //   return axios.create({
 //     headers: {
 //       Authorization: `Bearer ${token}`,
@@ -21,5 +24,3 @@ const axiosWithAuth = () => {
 //     baseURL: "https://heftyb-how-to.herokuapp.com",
 //   });
 // };
-
-export default axiosWithAuth;
