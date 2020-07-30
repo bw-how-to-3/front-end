@@ -12,17 +12,6 @@ const UpdateForm = (props) => {
     body: "",
   });
 
-  //   useEffect(() => {
-  //     axiosWithAuth()
-  //       .get(`/posts/posts/{postid}`, skill)
-  //       .then((res) => {
-  //         setSkill(res.data);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }, []);
-
   const handleChanges = (e) => {
     e.persist();
     setSkill({
