@@ -24,7 +24,7 @@ function App() {
     axiosWithAuth()
       .get("/posts/posts")
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSkills(res.data);
       });
   }, []);
@@ -33,7 +33,7 @@ function App() {
     axiosWithAuth()
       .post("/posts/post", newPost)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSkills([...skills, newPost]);
       })
       .catch((error) => {

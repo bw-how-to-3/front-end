@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 // import { HowToContext } from "../contexts/HowToContext";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 // import { HowToContext } from '../contexts/HowToContext'
 

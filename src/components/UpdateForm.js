@@ -40,11 +40,12 @@ const handleChanges = (e) => {
 
 const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(id)
     axiosWithAuth()
     .put(`/posts/post/${id}`, skill)
     .then(res => {
-        console.log({res})
-        setSkills(res.data)
+        console.log(res)
+        // setSkills(res.data)
         push(`/skills-list/`)
     })
     .catch(error => {
