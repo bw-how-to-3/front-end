@@ -30,7 +30,6 @@ const UpdateForm = (props) => {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(skills[0]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
