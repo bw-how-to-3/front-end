@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import axios from 'axios'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+// import axios from 'axios'
+import "./App.css";
 
 // COMPONENTS
 import Login from './components/Login'
 import Register from './components/Register'
-import HowToCard from './components/HowToCard'
+// import HowToCard from './components/HowToCard'
 import SkillsList from './components/SkillsList'
 import NavigationBar from './components/NavigationBar'
 import LandingPage from './components/LandingPage'
@@ -16,15 +17,6 @@ import UpdateForm from './components/UpdateForm'
 import axiosWithAuth from './utils/axiosWithAuth'
 import { HowToContext } from './contexts/HowToContext';
 
-import SkillsList from "./components/SkillsList";
-import NavigationBar from "./components/NavigationBar";
-
-import "./App.css";
-import { HowToContext } from "./contexts/HowToContext";
-import HowToForm from "./components/HowToForm";
-import UpdateForm from "./components/UpdateForm";
-import axiosWithAuth from "./utils/axiosWithAuth";
-
 function App() {
   const [skills, setSkills] = useState([]);
 
@@ -32,7 +24,7 @@ function App() {
     axiosWithAuth()
       .get("/posts/posts")
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSkills(res.data);
       });
   }, []);
@@ -41,7 +33,7 @@ function App() {
     axiosWithAuth()
       .post("/posts/post", newPost)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setSkills([...skills, newPost]);
       })
       .catch((error) => {
@@ -58,7 +50,7 @@ function App() {
           <Route path="/login" component={Login} />
           <PrivateRoute path="/skills-list" component={SkillsList} />
           <PrivateRoute path="/how-to-form" component={HowToForm} />
-          <PrivateRoute path="/update-form" component={UpdateForm} />
+          <PrivateRoute path="/update-form/:id" component={UpdateForm} />
         </div>
       </Router>
     </HowToContext.Provider>
