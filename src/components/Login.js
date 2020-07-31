@@ -37,37 +37,39 @@ const Login = props => {
     }
 
     return(
-        <div className='uk-section uk-section-small'>
-        <div className="uk-container uk-flex uk-flex-center">
-            <form onSubmit={login} className='uk-card uk-card-secondary uk-card-body'>
-            <h4>Welcome back!</h4>
-            <h4>Please Log into your account</h4>
+        <div className='login'>
+            <div className='uk-section uk-section-small'>
+                <div className="uk-container uk-flex uk-flex-center">
+                <form onSubmit={login} className='uk-card uk-card-secondary uk-card-body'>
+                <h4>Welcome back!</h4>
+                <h4>Please Log into your account</h4>
+                    <div className='uk-margin'>
+                        <input
+                        className='uk-input'
+                        type='text'
+                        name='username'
+                        placeholder='username'
+                        onChange={handleChanges}
+                        value={credentials.username}
+                        />
+                    </div>
+                    <div className='uk-margin'>
+                        <input
+                        className='uk-input'
+                        type='password'
+                        name='password'
+                        placeholder='password'
+                        onChange={handleChanges}
+                        value={credentials.password}
+                        />
+                    </div>
                 <div className='uk-margin'>
-                    <input
-                    className='uk-input'
-                    type='text'
-                    name='username'
-                    placeholder='username'
-                    onChange={handleChanges}
-                    value={credentials.username}
-                    />
+                    <button className='uk-button uk-button-default uk-width-1-1'>Log in</button>
                 </div>
-                <div className='uk-margin'>
-                    <input
-                    className='uk-input'
-                    type='password'
-                    name='password'
-                    placeholder='password'
-                    onChange={handleChanges}
-                    value={credentials.password}
-                    />
-                </div>
-            <div className='uk-margin'>
-                <button className='uk-button uk-button-default uk-width-1-1'>Log in</button>
-            </div>
-            <h4>Not registered yet?  <Link to='/Register'>Register Here</Link></h4>
+                <h4>Not registered yet?  <Link to='/Register'>Register Here</Link></h4>
 
-            </form>
+                </form>
+            </div>
         </div>
     </div>
     )
