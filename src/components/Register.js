@@ -35,6 +35,7 @@ const Register = (props) => {
   };
 
     return (
+      <div className='login'>
         <div className='uk-section uk-section-small'>
           <div className="uk-container uk-flex uk-flex-center">
             <form onSubmit={newUser} className='uk-card uk-card-secondary uk-card-body'>
@@ -68,7 +69,8 @@ const Register = (props) => {
             
             </form>
         </div>
-      </div>    
+      </div>  
+    </div>    
     )
 }
 export default Register

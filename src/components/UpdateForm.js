@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useHistory, useParams, useLocation } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import styled from "styled-components";
+import { HowToContext } from "../contexts/HowToContext";
 
 const ButtonStyle = styled.button`
   border: 1px solid #383d3b;

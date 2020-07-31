@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { HowToContext } from "../contexts/HowToContext";
 import { Link } from "react-router-dom";
-// import axiosWithAuth from "../utils/axiosWithAuth";
 import HowToCard from "./HowToCard";
 import styled from "styled-components";
 
