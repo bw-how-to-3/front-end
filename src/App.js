@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-// import axios from 'axios'
 import "./App.css";
 
 // COMPONENTS
 import Login from './components/Login'
 import Register from './components/Register'
-// import HowToCard from './components/HowToCard'
 import SkillsList from './components/SkillsList'
 import NavigationBar from './components/NavigationBar'
 import LandingPage from './components/LandingPage'

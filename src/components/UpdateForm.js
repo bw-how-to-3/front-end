@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { useHistory, useParams, useLocation } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 import axiosWithAuth from '../utils/axiosWithAuth'
 import { HowToContext } from '../contexts/HowToContext'
 
@@ -7,7 +7,7 @@ import { HowToContext } from '../contexts/HowToContext'
 const UpdateForm = (props) => {
 const { skills, setSkills } = useContext(HowToContext)
 const { id } = useParams()
-const location = useLocation();
+
 const { push } = useHistory()
 
 const [skill, setSkill] = useState ({
